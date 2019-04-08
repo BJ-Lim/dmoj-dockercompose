@@ -1,7 +1,6 @@
 #!/bin/bash
 
 pd=`pwd`'/data/problems'
-echo $pd
 
 docker stop t-judge
 docker rm t-judge
