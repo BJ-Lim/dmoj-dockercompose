@@ -2,8 +2,8 @@ version: '3.1'
 
 services:
   site:
-    build: ./build/site
-#   image: schoj/site
+    #build: ./build/site
+    image: schoj/site
     container_name: oj-site
     restart: always
     ports:
@@ -18,15 +18,19 @@ services:
       - $PWD/data/site:/site
       - $PWD/data/mysql:/var/lib/mysql
       - $PWD/data/problems:/problems
+      - $PWD/data/logs:/var/log/nginx
+    command:
+      - /bin/bash
   
-  judge:
-    build: ./build/judge
+# judge:
+    #build: ./build/judge
+    #image: dmoj/judge-medium
 #   image: schoj/judge
-    container_name: oj-judger
-    privileged: true
-    restart: always
-    depends_on:
-      - site
-    volumes:
-      - $PWD/data/problems:/problems
-    env_file: judge1.env
+#   container_name: oj-judger
+#   privileged: true
+#   restart: always
+#   depends_on:
+#     - site
+#   volumes:
+#     - $PWD/data/problems:/problems
+#   env_file: judge1.env
